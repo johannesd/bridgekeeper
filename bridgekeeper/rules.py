@@ -326,9 +326,12 @@ class R(Rule):
                     attr = field.get_accessor_name()
                 else:
                     attr = key_fragment
-                lhs = getattr(lhs, attr)
+                if hasattr(lhs, attr):
+                    lhs = getattr(lhs, attr)
+                else:
+                    lhs = None
 
-            # Compare it against the RHS.
+                    # Compare it against the RHS.
             # Note that the LHS will usually be a value, but in the case
             # of a ManyToMany or the 'other side' of a ForeignKey it
             # will be a RelatedManager. In this case, we need to check
