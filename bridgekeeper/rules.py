@@ -311,7 +311,7 @@ class R(Rule):
 
     def check(self, user, instance=None):
         if instance is None:
-            return False
+            return self.is_possible_for(user)
 
         # This loop exits early, returning False, if any argument
         # doesn't match.
